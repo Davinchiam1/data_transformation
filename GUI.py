@@ -152,6 +152,7 @@ class App(tk.Frame):
         name_colum = self.name_colum_entry.get()
         filter_col = self.filter_col_entry.get()
         sort_type = self.sel_type_var.get()
+        set_dates=self.set_dates_var.get()
 
         if self.markers_entry.get() == '':
             markers = None
@@ -159,11 +160,7 @@ class App(tk.Frame):
             markers = self.markers_entry.get()[1:-1]
             name_colum = self.name_colum_entry.get()
         filepath = None
-        if len(selection) != 2:
-            selection = None
-        else:
-            selection = (selection[0], selection[1])
-        set_dates = self.set_dates_var.get()
+
         if self.dir_file_var.get() != 'Dir':
             filepath = directory[1:-1]
             directory = None
@@ -187,6 +184,7 @@ class App(tk.Frame):
                    temp_frame=data, output_file=os.path.normpath(finalname + '\\result\\keywords1.xlsx'))
             fk.use(name_colum=name_colum, need_normalization=False, n_grams=3,
                    temp_frame=data, output_file=os.path.normpath(finalname + '\\result\\keywords3.xlsx'))
+        print('Finished')
 
 
 root = tk.Tk()

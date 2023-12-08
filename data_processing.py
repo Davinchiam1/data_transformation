@@ -59,19 +59,29 @@ class Data_process:
         self.final_frame = None
 
     def _filter(self,col_name="", values=[], sort_type='Include'):
-        """in development"""
+        """
+            Func for filtering data in dataframe by 1 selected column
+            Args:
+                col_name (str): name of column in frame to apply filter.
+                values (list): list of values to filter
+                sort_type (str): Type of sorting, if include - frame will include data with/within values, exclude -
+                will exclude data with|within values. Default Include
+
+            Returns:
+                None
+        """
         data_type=str(self.final_frame[col_name].dtype)
         if data_type == 'int64' or data_type == 'float64':
             if sort_type == 'Include':
                 if len(values)==2:
-                    self.final_frame=self.final_frame[(self.final_frame[col_name] >= values[0]) & (self.final_frame[col_name] <= values[1])]
+                    self.final_frame=self.final_frame[(self.final_frame[col_name] >= int(values[0])) & (self.final_frame[col_name] <= int(values[1]))]
                 elif len(values)==1:
-                    self.final_frame = self.final_frame[(self.final_frame[col_name] >= values[0])]
+                    self.final_frame = self.final_frame[(self.final_frame[col_name] >= int(values[0]))]
             elif sort_type == 'Exclude':
                 if len(values)==2:
-                    self.final_frame=self.final_frame[(self.final_frame[col_name] <= values[0]) & (self.final_frame[col_name] >= values[1])]
+                    self.final_frame=self.final_frame[(self.final_frame[col_name] <= int(values[0])) & (self.final_frame[col_name] >= int(values[1]))]
                 elif len(values)==1:
-                    self.final_frame = self.final_frame[(self.final_frame[col_name] <= values[0])]
+                    self.final_frame = self.final_frame[(self.final_frame[col_name] <= int(values[0]))]
 
         elif data_type == 'object':
             if sort_type == 'Include':
