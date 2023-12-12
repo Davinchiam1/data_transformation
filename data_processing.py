@@ -149,6 +149,9 @@ class Data_process:
                                            data processing chain.
                 single (bool): determines marking method. Default False.
                 filepath (string): path to file for loading data from single file.
+                filter_col (str): name of column to apply filter
+                values (list): list of values to use as filtering parameter
+                sort_type (str): type of sorting - Include or Exclude specified values
 
             Returns:
                 None
